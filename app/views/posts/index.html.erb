@@ -3,7 +3,7 @@
 <%# 新規投稿はpostsコントローラーのcreateアクションで行われる %>
 <%# そのアクションのURIは/postであるため"/posts"としている %>
 <%# そのURIのHTTPメソッドがpostなのでmethod: :postとしている %>
-  <%= form.text_field :content %>
+  <%= form.text_field :content, id: "content" %>
 <%# ブロック変数formとtext_fieldを用いることで入力欄を作成しています %>
 <%# そのフォームに入力したものはcontentカラムの内容としてDBに保存するために:contentとしています %>
   <%= form.submit '投稿する' , id: "submit" %>
