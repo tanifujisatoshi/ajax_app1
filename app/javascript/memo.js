@@ -13,7 +13,7 @@ const buildHTML = (XHR) => {
        <div class = "post-content">
           ${item.content}
        </div>
-     </div>` 
+     </div>`  
 //itemには投稿されたメモのレコード情報が入っているのでその変数の直後にカラムを指定することでその内容を取得することができる
 //HTML情報を変数htmlに代入している 
 return html 
@@ -46,7 +46,8 @@ function post()
 //sendメソッドを使うことでリクエストの内容をサーバーサイドに送信することができる
 //今回はフォームに入力した値をリクエストとしてサーバー側に送信したいのでsendメソッドの引数にformDataを指定している
      XHR.onload = () => {
-//javascriptを用いたHTTP通信が成功した時の処理をアロー関数を用いて記述している
+//javascriptを用いたHTTP通信のリクエストの送信が成功した時の処理をアロー関数を用いて記述している
+//しかしサーバーサイドでリクエストが正常に受信できない可能性があるためHTTPステータスコードによる条件分岐をonloadプロパティの処理内に記述している
      if (XHR.status != 200) {
 //HTTP通信のリクエストに対してサーバーから送信される番号が200ではなかった場合 つまりリクエストが正常にサーバー側で受信できなかった場合は波括弧内の処理がされる
         alert(`Error ${XHR.status}: ${XHR.statusText}`)
@@ -72,5 +73,8 @@ function post()
    }
 
 window.addEventListener("load", post)
-
+//ブラウザ全体を意味する要素windowに対してaddEventListenerメソッドを使いloadイベントを設定することでHTMLコードより先にJavaScriptのコードを読み込ませることができる
+//そのイベントが発火した時にどのような処理をさせたいかを第二引数で指定することができる
+//今回はpost関数の処理がloadイベント後に開始される
+//この記述が読み込まれるまでpost関数の処理は開始されない
 
